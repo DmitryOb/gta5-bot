@@ -44,3 +44,11 @@ sudo apt install tesseract-ocr
 sudo apt install libtesseract-dev
 sudo apt install tesseract-ocr-eng
 sudo apt-get install libicu-dev libpango1.0-dev libcairo2-dev
+
+
+https://www.youtube.com/watch?v=J0jg1Hj2GhU&t=638s // индус
+https://www.youtube.com/watch?v=i_1-hGsXxy8 // 7 лет назад но смысл тот же
+
+проще найти похожий шрифт:
+https://fonts.google.com/specimen/Barlow?preview.text=%2B&preview.text_type=custom&preview.layout=row
+https://fonts.google.com/specimen/Manrope?preview.text=4%2B4&preview.text_type=custom&preview.layout=row
