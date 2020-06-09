@@ -36,6 +36,11 @@ for i in `seq 0 $N`; do
 done
 
 tesseract pol.ocrb.exp0.tif out --psm 6 // до обучения - cis
+tesseract pol.ocrb.exp0.tif stdout -c tessedit_char_whitelist=0123456789
 
-tesseract pol.ocrb.exp0.tif pol.ocrb.exp0 nobatch box.train
-unicharset_extractor pol.ocrb.exp0.box
+для linux:
+https://tesseract-ocr.github.io/tessdoc/Home.html
+sudo apt install tesseract-ocr
+sudo apt install libtesseract-dev
+sudo apt install tesseract-ocr-eng
+sudo apt-get install libicu-dev libpango1.0-dev libcairo2-dev
