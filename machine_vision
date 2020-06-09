@@ -1,0 +1,40 @@
+cv2.GaussianBlur(img, (7, 7), 2) // размыть по гаусу
+cv2.cvtColor(img, cv2.COLOR_BGR2HSV) // сменить цветовую модель по дефолту работаем с BGR
+
+cv2.inRange(img, low, high) // выделить цветовой диапазоне: внутри low - белый, снаружи high - черный
+
+rgb(255, 204, 48) // основной желитый -> hsv 45, 81.2, 100 -> 22, 203, 255
+rgb(160, 135, 67) // прозрачный желтый -> hsv 44 58 62
+rgb(99, 92, 79) // уже серая плашка -> 39 20 39
++-20 для каждого из каналов
+
+hsv format classic -> opencv:
+H 0...360 -> 180 (/2 то что в пипетке)
+S 0...100 -> 255 (*2.5 то что в пипетке)
+V 0...100 -> 255 (*2.5 то что в пипетке)
+
+ставим тессеракт для винды Windows Installer made with MinGW-w64 from UB Mannheim
+tesseract-ocr-w64-setup-v4.1.0.20190314.exe // https://digi.bib.uni-mannheim.de/tesseract/
+https://tesseract-ocr.github.io/tessdoc/4.0-with-LSTM.html#400-alpha-for-windows
+во время установкни стави галку про цифры, ру и англ, добавляем в PATH папку
+https://tesseract-ocr.github.io/tessdoc/
+tesseract api.png out --dpi 300 --psm 6
+на тессеракте 4 не получается сделать
+config='digits' или
+config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789')
+не все примеры смогла схавать наше api поэтому все так обучать както тессеракт надо(
+
+jTessBoxEditor // http://vietocr.sourceforge.net/training.html
+https://www.pretius.com/how-to-prepare-training-files-for-tesseract-ocr-and-improve-characters-recognition/
+[language name].[font name].exp[number].[file extension]
+pol.ocrb.exp0.tif
+
+N=48 # set accordingly to the number of files that you have
+for i in `seq 0 $N`; do
+    tesseract pol.ocrb.exp$i.tif pol.ocrb.exp$i batch.nochop makebox --psm 6
+done
+
+tesseract pol.ocrb.exp0.tif out --psm 6 // до обучения - cis
+
+tesseract pol.ocrb.exp0.tif pol.ocrb.exp0 nobatch box.train
+unicharset_extractor pol.ocrb.exp0.box
