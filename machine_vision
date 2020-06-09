@@ -25,6 +25,7 @@ config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789')
 не все примеры смогла схавать наше api поэтому все так обучать както тессеракт надо(
 
 jTessBoxEditor // http://vietocr.sourceforge.net/training.html
+http://findevelop.blogspot.com/2013/04/tesseract.html
 https://www.pretius.com/how-to-prepare-training-files-for-tesseract-ocr-and-improve-characters-recognition/
 [language name].[font name].exp[number].[file extension]
 pol.ocrb.exp0.tif
