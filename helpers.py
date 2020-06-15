@@ -1,34 +1,10 @@
-# двигать мышкой
-# pyautogui.moveTo(100, 100)
-# pyautogui.mouseDown()
-# time.sleep(0.4)
-# pyautogui.mouseUp()
-# w, h = template.shape[::-1]
-
-
-# pip install opencv-python pyautogui
-
-# pip install pywin32
+import cv2
+from PIL import ImageGrab
 
 # --------x
 # |
 # |
 # y
-
-# gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-# result = cv2.matchTemplate(gray_img, template, cv2.TM_CCOEFF_NORMED)
-# loc = np.where(result >= 0.83)
-# if (list(zip(*loc))):
-#     print(loc)
-#     for pt in zip(*loc[::1]):
-#         x = int(pt[0])
-#         y = int(pt[1])
-#     find_answer_button(x, y, i, result)
-# else:
-#     print("we have not loc", i)
-# time.sleep(0.3)
-
-import cv2
 
 def viewcv(cv2Obj):
     cv2.imshow("viewCv", cv2Obj)

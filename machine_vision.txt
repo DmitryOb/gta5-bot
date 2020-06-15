@@ -17,8 +17,19 @@ V 0...100 -> 255 (*2.5 то что в пипетке)
 tesseract-ocr-w64-setup-v4.1.0.20190314.exe // https://digi.bib.uni-mannheim.de/tesseract/
 https://tesseract-ocr.github.io/tessdoc/4.0-with-LSTM.html#400-alpha-for-windows
 во время установкни стави галку про цифры, ру и англ, добавляем в PATH папку
+
+для linux:
+https://tesseract-ocr.github.io/tessdoc/Home.html
+sudo apt install tesseract-ocr
+sudo apt install libtesseract-dev
+sudo apt install tesseract-ocr-eng
+sudo apt-get install libicu-dev libpango1.0-dev libcairo2-dev
+
+документация:
 https://tesseract-ocr.github.io/tessdoc/
-tesseract api.png out --dpi 300 --psm 6
+
+пример запуска
+tesseract api.png stdout --dpi 300 --psm 6
 на тессеракте 4 не получается сделать
 config='digits' или
 config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789')
@@ -30,21 +41,8 @@ https://www.pretius.com/how-to-prepare-training-files-for-tesseract-ocr-and-impr
 [language name].[font name].exp[number].[file extension]
 pol.ocrb.exp0.tif
 
-N=48 # set accordingly to the number of files that you have
-for i in `seq 0 $N`; do
-    tesseract pol.ocrb.exp$i.tif pol.ocrb.exp$i batch.nochop makebox --psm 6
-done
-
 tesseract pol.ocrb.exp0.tif out --psm 6 // до обучения - cis
 tesseract pol.ocrb.exp0.tif stdout -c tessedit_char_whitelist=0123456789
-
-для linux:
-https://tesseract-ocr.github.io/tessdoc/Home.html
-sudo apt install tesseract-ocr
-sudo apt install libtesseract-dev
-sudo apt install tesseract-ocr-eng
-sudo apt-get install libicu-dev libpango1.0-dev libcairo2-dev
-
 
 https://www.youtube.com/watch?v=J0jg1Hj2GhU&t=638s // индус
 https://www.youtube.com/watch?v=i_1-hGsXxy8 // 7 лет назад но смысл тот же

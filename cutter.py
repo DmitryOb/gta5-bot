@@ -54,5 +54,3 @@ def multiple_cut_task():
         # val = val[0] + '.tiff'
         img_right.save('tasks/' + 'pol.ocrb.exp' + str(i) + '.tif')
         i += 1
-
-multiple_cut_task()
