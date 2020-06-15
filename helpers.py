@@ -1,11 +1,6 @@
 import cv2
 from PIL import ImageGrab
 
-# --------x
-# |
-# |
-# y
-
 def viewcv(cv2Obj):
     cv2.imshow("viewCv", cv2Obj)
     cv2.waitKey(0)

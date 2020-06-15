@@ -5,6 +5,7 @@ import pytesseract
 import cv2
 import os
 
+# нарезаем с полного скрина 4 вида картинки
 def full_cut(filename):
     single_cut(0, filename)
     single_cut(1, filename)
