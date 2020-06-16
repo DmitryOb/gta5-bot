@@ -1,8 +1,10 @@
 ﻿#autorun
+
+$y3_answer = 540
+$y_otv_CORR = 700
+
 $x_answer_CORR = 1270
-$y3_answer = 530
 $x_otv_CORR = 1200
-$y_otv_CORR = 680
 
 waitms(4)
 

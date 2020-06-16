@@ -101,7 +101,7 @@ def miner_bot():
     i = 0
     while True:
         i += 1
-        if i % 20 == 0:  # i % 10 кажде 5 минут
+        if i % 20 == 0:  # i % 10 каждые 5 минут
             clicker_script_run(miner_collect)
 
         clicker_script_run(miner_auto)
@@ -110,7 +110,6 @@ def miner_bot():
             true_answer = task_render_calc('cutted/0.png')
             isWork = try_match_true_answer(true_answer)
             time.sleep(1)
-
 
 
 miner_bot()

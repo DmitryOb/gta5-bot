@@ -1,8 +1,5 @@
-import time
 from PIL import Image
-from api import ocr_space_file
 import pytesseract
-import cv2
 import os
 
 # нарезаем с полного скрина 4 вида картинки
@@ -16,10 +13,10 @@ def single_cut(number, filename):
     img = Image.open(filename)
     x1 = 1219
     x2 = 1335
-    task_row = [340, 375]   # task
-    first_row = [410, 430]   # answer1
-    second_row = [465, 485]   # answer2
-    third_row = [520, 540]   # answer3
+    task_row = [350, 385]   # task
+    first_row = [415, 450]   # answer1
+    second_row = [470, 505]   # answer2
+    third_row = [522, 560]   # answer3
     Rows = [
         (x1, task_row[0], x2, task_row[1]),
         (x1, first_row[0], x2, first_row[1]),
