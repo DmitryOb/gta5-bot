@@ -101,7 +101,7 @@ def miner_bot():
     i = 0
     while True:
         i += 1
-        if i % 20e == 0:  # i % 10 кажде 5 минут
+        if i % 20 == 0:  # i % 10 кажде 5 минут
             clicker_script_run(miner_collect)
 
         clicker_script_run(miner_auto)
