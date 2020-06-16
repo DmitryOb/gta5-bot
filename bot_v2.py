@@ -7,10 +7,8 @@ import cv2
 import numpy as np
 import pathlib
 
-
 path_to_clicker = '"D:/_Distr_Programs/Clickermann v4.13 x64/Clickermann.exe"'
 script_dir = str(pathlib.Path(__file__).parent.absolute()) + '/clicker_scripts/'
-
 
 init = script_dir + 'init.cms'
 first_variant = script_dir + 'first_variant.cms'
@@ -103,11 +101,10 @@ def miner_bot():
     i = 0
     while True:
         i += 1
-        if i % 20 == 0:  # i % 10 кажде 5 минут
+        if i % 20e == 0:  # i % 10 кажде 5 минут
             clicker_script_run(miner_collect)
 
         clicker_script_run(miner_auto)
-        time.sleep(0.6)
         if task_is_open():
             full_cut("base_screen.png")
             true_answer = task_render_calc('cutted/0.png')
@@ -131,3 +128,5 @@ def oil_bot():
             time.sleep(2)
             restart_oil = '"D:/_Distr_Programs/Clickermann v4.13 x64/restart_oil.cms"'
             clicker_script_run(restart_oil)
+
+miner_bot()

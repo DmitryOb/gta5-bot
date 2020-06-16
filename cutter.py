@@ -16,11 +16,15 @@ def single_cut(number, filename):
     img = Image.open(filename)
     x1 = 1219
     x2 = 1335
+    task_row = [340, 375]   # task
+    first_row = [410, 430]   # answer1
+    second_row = [465, 485]   # answer2
+    third_row = [520, 540]   # answer3
     Rows = [
-        (x1, 381, x2, 409),  # task
-        (x1, 450, x2, 470),  # answer1
-        (x1, 503, x2, 525),  # answer2
-        (x1, 558, x2, 578),  # answer3
+        (x1, task_row[0], x2, task_row[1]),
+        (x1, first_row[0], x2, first_row[1]),
+        (x1, second_row[0], x2, second_row[1]),
+        (x1, third_row[0], x2, third_row[1]),
     ]
     img_right = img.crop(Rows[number])
     img_right.save('cutted/' + str(number) + '.png')
