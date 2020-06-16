@@ -17,10 +17,10 @@ def single_cut(number, filename):
     x1 = 1219
     x2 = 1335
     Rows = [
-        (x1, 340, x2, 396),  # task
-        (x1, 413, x2, 454),  # answer1
-        (x1, 475, x2, 499),  # answer2
-        (x1, 527, x2, 553),  # answer3
+        (x1, 381, x2, 409),  # task
+        (x1, 450, x2, 470),  # answer1
+        (x1, 503, x2, 525),  # answer2
+        (x1, 558, x2, 578),  # answer3
     ]
     img_right = img.crop(Rows[number])
     img_right.save('cutted/' + str(number) + '.png')
@@ -32,8 +32,9 @@ def parse_tesseract(filename):
         image,
         config='--psm 6',
     )
-    if parsed_text == 'Q':
-        parsed_text = 9
+    parsed_text = parsed_text.replace('"', '1')
+    parsed_text = parsed_text.replace('Q', '9')
+    parsed_text = parsed_text.replace('B', '13')
     return parsed_text
 
 def multiple_cut_task():

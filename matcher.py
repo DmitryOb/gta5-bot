@@ -48,4 +48,6 @@ def task_render_calc(task):
         found_arr.append(found_arr[0])
     print('=======================================')
     print(task, 'we find numbers:', found_arr)
-    print('answer is: ', calculate(found_arr))
+    answer = calculate(found_arr)
+    print('answer is: ', answer)
+    return answer

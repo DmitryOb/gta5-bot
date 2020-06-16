@@ -35,34 +35,6 @@ def task_processing(filename):
 
     winsound.PlaySound('calculated.wav', winsound.SND_FILENAME)
 
-def search_tasks_cycle():
-    i = 0
-    find = False
-    while not find:
-        i += 1
-        base_screen = ImageGrab.grab(bbox=(0, 0, 2560, 1080))
-        base_screen.save("base_screen.png")
-        img = cv2.imread("base_screen.png")
-        mod = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-
-        hsv_low_yellow = np.array((22.5, 207.06, 255), np.uint8)
-        hsv_high_yellow = np.array((26, 255, 255), np.uint8)
-        mask_yellow = cv2.inRange(mod, hsv_low_yellow, hsv_high_yellow)
-        result = cv2.bitwise_and(mod, mod, mask=mask_yellow)
-        result = cv2.cvtColor(result, cv2.COLOR_HSV2BGR)
-        loc = np.where(result >= 0.99)
-        if (list(zip(*loc))):
-            for pt in zip(*loc[::1]):
-                x = int(pt[0])
-                y = int(pt[1])
-            print("we have a loc", i)
-            find = True
-            winsound.PlaySound('find_task.wav', winsound.SND_FILENAME)
-            task_processing('base_screen.png')
-        else:
-            print("we have not loc", i)
-        time.sleep(0.3)
-
 def alaram_when_task():
     i = 0
     while True:
@@ -78,6 +50,7 @@ def alaram_when_task():
         result = cv2.bitwise_and(mod, mod, mask=mask_yellow)
         result = cv2.cvtColor(result, cv2.COLOR_HSV2BGR)
         loc = np.where(result >= 0.99)
+
         if (list(zip(*loc))):
             for pt in zip(*loc[::1]):
                 x = int(pt[0])
@@ -86,6 +59,5 @@ def alaram_when_task():
             winsound.PlaySound('find_task.wav', winsound.SND_FILENAME)
         else:
             print("we have not loc", i)
-        time.sleep(0.3)
 
-alaram_when_task()
+        time.sleep(0.3)

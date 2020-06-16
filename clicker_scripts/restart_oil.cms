@@ -1,0 +1,29 @@
+﻿#autorun
+// RECORDED SCRIPT 15.06.2020
+// waitms correction
+$S_CORR = 0
+
+waitms(5 + $S_CORR)
+move(988,640)
+waitms(789 + $S_CORR)
+  keyDown(27)
+waitms(72 + $S_CORR)
+  keyUp(27)
+waitms(1280 + $S_CORR)
+  keyDown(69)
+waitms(56 + $S_CORR)
+  keyUp(69)
+waitms(2576 + $S_CORR)
+// deleted
+waitms(0 + $S_CORR)
+// deleted
+waitms(72 + $S_CORR)
+// deleted
+waitms(5 + $S_CORR)
+  keyUp(18)
+waitms(0 + $S_CORR)
+  keyUp(83)
+waitms(1 + $S_CORR)
+  keyUp(164)
+// FINISH AT 22:31:06
+HALT(1)

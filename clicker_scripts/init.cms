@@ -1,0 +1,12 @@
+﻿#autorun
+
+move(100,100)
+waitms(50)
+  lDown(100,100)
+waitms(50)
+  lUp(100,100)
+waitms(50)
+move(200,200)
+waitms(50)
+
+HALT(1)
