@@ -1,0 +1,17 @@
+﻿WHILE(true)
+    GETSCREEN
+    $var = PXL(1178,966) 
+    print($var)
+    if($var == 3198207)
+        LCLICK(1178,966)
+        move(1177, 623)
+        WAITMS(20)
+        // row down uncomment in WAR!!!
+        LCLICK(1177, 623)
+    end_if
+    //print('x:')
+    //print($_xmouse)
+    //print('y:')
+    //print($_ymouse)    
+    WAITMS(50)
+END_CYC

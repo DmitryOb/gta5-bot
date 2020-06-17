@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 import pathlib
 
-path_to_clicker = '"D:/_Distr_Programs/Clickermann v4.13 x64/Clickermann.exe"'
+path_to_clicker = str(pathlib.Path(__file__).parent.absolute()) + '/clickermann/Clickermann.exe'
 script_dir = str(pathlib.Path(__file__).parent.absolute()) + '/clicker_scripts/'
 
 init = script_dir + 'init.cms'
@@ -85,7 +85,6 @@ def task_is_open():
             x = int(pt[0])
             y = int(pt[1])
         print("we have a loc")
-        # winsound.PlaySound('find_task.wav', winsound.SND_FILENAME)
         return True
     else:
         print("we have not loc")
