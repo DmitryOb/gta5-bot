@@ -4,6 +4,11 @@ keyDown(69)
 waitms(5456)
 keyUp(69)
 
+waitms(4)
+move(1280, 540)
+waitms(4)
+move(1281, 541)
+
 waitms(6850)
 
 HALT(1)
