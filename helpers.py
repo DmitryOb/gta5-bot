@@ -51,3 +51,18 @@ def viewcv(cv2Obj):
 #     print("3:", third_variant)
 #
 #     winsound.PlaySound('calculated.wav', winsound.SND_FILENAME)
+
+# def human_is_open():
+#     base_screen = ImageGrab.grab(bbox=(0, 0, 2560, 1080))
+#     base_screen.save("base_screen.png")
+#
+#     template = cv2.imread('human_tpl.png', 0)
+#     img_rgb = cv2.imread('base_screen.png')
+#     img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
+#     result = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
+#     loc = np.where(result >= 0.926)
+#
+#     if list(zip(*loc)):
+#         return True
+#     else:
+#         return False

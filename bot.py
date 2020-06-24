@@ -1,14 +1,13 @@
-import subprocess
 import time
-import winsound
+from clicker_run import *
 from cutter import full_cut, parse_tesseract
 from matcher import task_render_calc
 from PIL import ImageGrab
+from win32api import GetSystemMetrics
 import cv2
 import numpy as np
 import pathlib
 
-path_to_clicker = str(pathlib.Path(__file__).parent.absolute()) + '/clickermann/Clickermann.exe'
 script_dir = str(pathlib.Path(__file__).parent.absolute()) + '/clicker_scripts/'
 
 init = script_dir + 'init.cms'
@@ -18,13 +17,16 @@ third_variant = script_dir + 'third_variant.cms'
 oil = script_dir + 'oil.cms'
 miner_auto = script_dir + 'miner_auto.cms'
 miner_collect = script_dir + 'miner_collect.cms'
+miner_collect_1920 = script_dir + 'miner_collect_1920.cms'
 
-def clicker_script_run(script_path):
-    subprocess.run(
-        f'{path_to_clicker} {script_path}',
-        check=True,
-        shell=True
-    )
+monitor_width = GetSystemMetrics(0)
+monitor_height = GetSystemMetrics(1)
+
+def is_ultra_wide():
+    if monitor_width == 2560:
+        return True
+    else:
+        return False
 
 def try_match_true_answer(true_answer_result):
     first_variant_answer = tesseract_to_int('cutted/1.png')
@@ -56,20 +58,8 @@ def tesseract_to_int(file_path):
     except:
         print('we find case which we cant covert to number:', parse_result)
 
-def clicker_script_run_with_init(script_path):
-    subprocess.run(
-        f'{path_to_clicker} {init}',
-        check=True,
-        shell=True
-    )
-    subprocess.run(
-        f'{path_to_clicker} {script_path}',
-        check=True,
-        shell=True
-    )
-
 def task_is_open():
-    base_screen = ImageGrab.grab(bbox=(0, 0, 2560, 1080))
+    base_screen = ImageGrab.grab(bbox=(0, 0, monitor_width, monitor_height))
     base_screen.save("base_screen.png")
     img = cv2.imread("base_screen.png")
     mod = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
@@ -91,21 +81,6 @@ def task_is_open():
         print("we have not loc")
         return False
 
-def human_is_open():
-    base_screen = ImageGrab.grab(bbox=(0, 0, 2560, 1080))
-    base_screen.save("base_screen.png")
-
-    template = cv2.imread('human_tpl.png', 0)
-    img_rgb = cv2.imread('base_screen.png')
-    img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-    result = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
-    loc = np.where(result >= 0.926)
-
-    if list(zip(*loc)):
-        return True
-    else:
-        return False
-
 def miner_bot(collect_minute):
     subprocess.run(
         f'{path_to_clicker} {init}',
@@ -117,28 +92,16 @@ def miner_bot(collect_minute):
     while True:
         i += 1
         if i % (4*collect_minute) == 0:
-            clicker_script_run(miner_collect)
+            if is_ultra_wide():
+                clicker_script_run(miner_collect)
+            else:
+                clicker_script_run(miner_collect_1920)
 
         clicker_script_run(miner_auto)
         if task_is_open():
-            full_cut("base_screen.png")
+            full_cut("base_screen.png", is_ultra_wide())
             true_answer = task_render_calc('cutted/0.png')
-            isWork = try_match_true_answer(true_answer)
+            try_match_true_answer(true_answer)
             time.sleep(1)
-
-def alarm_when_human():
-    subprocess.run(
-        f'{path_to_clicker} {init}',
-        check=True,
-        shell=True
-    )
-
-    i = 0
-    while True:
-        i += 1
-        if human_is_open():
-            winsound.PlaySound('signal.wav', winsound.SND_FILENAME)
-            time.sleep(15)
-        clicker_script_run(miner_auto)
 
 miner_bot(15)

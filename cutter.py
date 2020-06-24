@@ -3,26 +3,42 @@ import pytesseract
 import os
 
 # нарезаем с полного скрина 4 вида картинки
-def full_cut(filename):
-    single_cut(0, filename)
-    single_cut(1, filename)
-    single_cut(2, filename)
-    single_cut(3, filename)
+def full_cut(filename, ultra_wide=True):
+    single_cut(0, filename, ultra_wide)
+    single_cut(1, filename, ultra_wide)
+    single_cut(2, filename, ultra_wide)
+    single_cut(3, filename, ultra_wide)
 
-def single_cut(number, filename):
+def single_cut(number, filename, ultra_wide=True):
     img = Image.open(filename)
-    x1 = 1219
-    x2 = 1335
-    task_row = [350, 385]   # task
-    first_row = [415, 450]   # answer1
-    second_row = [470, 505]   # answer2
-    third_row = [522, 560]   # answer3
-    Rows = [
-        (x1, task_row[0], x2, task_row[1]),
-        (x1, first_row[0], x2, first_row[1]),
-        (x1, second_row[0], x2, second_row[1]),
-        (x1, third_row[0], x2, third_row[1]),
-    ]
+
+    if ultra_wide:
+        x1 = 1219
+        x2 = 1335
+        task_row = [350, 385]   # task
+        first_row = [415, 450]   # answer1
+        second_row = [470, 505]   # answer2
+        third_row = [522, 560]   # answer3
+        Rows = [
+            (x1, task_row[0], x2, task_row[1]),
+            (x1, first_row[0], x2, first_row[1]),
+            (x1, second_row[0], x2, second_row[1]),
+            (x1, third_row[0], x2, third_row[1]),
+        ]
+    else:
+        x1 = 1219
+        x2 = 1335
+        task_row = [350, 385]   # task
+        first_row = [415, 450]   # answer1
+        second_row = [470, 505]   # answer2
+        third_row = [522, 560]   # answer3
+        Rows = [
+            (x1, task_row[0], x2, task_row[1]),
+            (x1, first_row[0], x2, first_row[1]),
+            (x1, second_row[0], x2, second_row[1]),
+            (x1, third_row[0], x2, third_row[1]),
+        ]
+
     img_right = img.crop(Rows[number])
     img_right.save('cutted/' + str(number) + '.png')
 
