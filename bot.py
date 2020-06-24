@@ -1,5 +1,6 @@
 import subprocess
 import time
+import winsound
 from cutter import full_cut, parse_tesseract
 from matcher import task_render_calc
 from PIL import ImageGrab
@@ -90,7 +91,22 @@ def task_is_open():
         print("we have not loc")
         return False
 
-def miner_bot():
+def human_is_open():
+    base_screen = ImageGrab.grab(bbox=(0, 0, 2560, 1080))
+    base_screen.save("base_screen.png")
+
+    template = cv2.imread('human_tpl.png', 0)
+    img_rgb = cv2.imread('base_screen.png')
+    img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
+    result = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
+    loc = np.where(result >= 0.926)
+
+    if list(zip(*loc)):
+        return True
+    else:
+        return False
+
+def miner_bot(collect_minute):
     subprocess.run(
         f'{path_to_clicker} {init}',
         check=True,
@@ -100,7 +116,7 @@ def miner_bot():
     i = 0
     while True:
         i += 1
-        if i % 20 == 0:  # i % 10 каждые 5 минут
+        if i % (4*collect_minute) == 0:
             clicker_script_run(miner_collect)
 
         clicker_script_run(miner_auto)
@@ -110,5 +126,19 @@ def miner_bot():
             isWork = try_match_true_answer(true_answer)
             time.sleep(1)
 
+def alarm_when_human():
+    subprocess.run(
+        f'{path_to_clicker} {init}',
+        check=True,
+        shell=True
+    )
 
-miner_bot()
+    i = 0
+    while True:
+        i += 1
+        if human_is_open():
+            winsound.PlaySound('signal.wav', winsound.SND_FILENAME)
+            time.sleep(15)
+        clicker_script_run(miner_auto)
+
+miner_bot(15)

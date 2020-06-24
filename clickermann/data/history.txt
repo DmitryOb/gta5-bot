@@ -1,2 +1,3 @@
-﻿D:\_Distr_Programs\Clickermann v4.13 x64\init.cms
+﻿D:\gtaV-bot\clicker_scripts\oil.cms
+D:\_Distr_Programs\Clickermann v4.13 x64\init.cms
 D:\_Distr_Programs\Clickermann v4.13 x64\miner.cms
