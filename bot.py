@@ -104,4 +104,4 @@ def miner_bot(collect_minute):
             try_match_true_answer(true_answer)
             time.sleep(1)
 
-miner_bot(15)
+miner_bot(10)

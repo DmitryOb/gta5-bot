@@ -2,6 +2,7 @@
 1. файлу ./clickermann/Clickermann.exe нужно сделать по умолчанию запускаемым от имени администратора: Right-click the application >> Go to Properties >> Click the Compatibility tab >> Check "Run this program as an administrator" >> Click OK
 2. необходимо установить интерпретатор питона на ПК: https://www.python.org/downloads/ -> Download Python 3.8.3 (сейчас это python-3.8.3.exe)
 3. из корня проекта запускаем закачку всех необходимых зависимостей из cmd: pip install -r requirements.txt
+4. pip install Pillow
 
 порядок запускать бота, подготовки в игре:
 1. сама игра должна работать в режиме "оконный без рамок"
