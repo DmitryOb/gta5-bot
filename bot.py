@@ -10,23 +10,29 @@ import pathlib
 
 script_dir = str(pathlib.Path(__file__).parent.absolute()) + '/clicker_scripts/'
 
-init = script_dir + 'init.cms'
-first_variant = script_dir + 'first_variant.cms'
-second_variant = script_dir + 'second_variant.cms'
-third_variant = script_dir + 'third_variant.cms'
-oil = script_dir + 'oil.cms'
-miner_auto = script_dir + 'miner_auto.cms'
-miner_collect = script_dir + 'miner_collect.cms'
-miner_collect_1920 = script_dir + 'miner_collect_1920.cms'
-
 monitor_width = GetSystemMetrics(0)
 monitor_height = GetSystemMetrics(1)
-
 def is_ultra_wide():
     if monitor_width == 2560:
         return True
     else:
         return False
+
+init = script_dir + 'init.cms'
+
+if is_ultra_wide():
+    first_variant = script_dir + 'first_variant.cms'
+    second_variant = script_dir + 'second_variant.cms'
+    third_variant = script_dir + 'third_variant.cms'
+    miner_collect = script_dir + 'miner_collect.cms'
+else:
+    first_variant = script_dir + 'first_variant_1920.cms'
+    second_variant = script_dir + 'second_variant_1920.cms'
+    third_variant = script_dir + 'third_variant_1920.cms'
+    miner_collect = script_dir + 'miner_collect_1920.cms'
+
+oil = script_dir + 'oil.cms'
+miner_auto = script_dir + 'miner_auto.cms'
 
 def try_match_true_answer(true_answer_result):
     first_variant_answer = tesseract_to_int('cutted/1.png')
@@ -92,10 +98,7 @@ def miner_bot(collect_minute):
     while True:
         i += 1
         if i % (4*collect_minute) == 0:
-            if is_ultra_wide():
-                clicker_script_run(miner_collect)
-            else:
-                clicker_script_run(miner_collect_1920)
+            clicker_script_run(miner_collect)
 
         clicker_script_run(miner_auto)
         if task_is_open():
